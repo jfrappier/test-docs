@@ -1,0 +1,92 @@
+---
+page_title: Enable multi-region support with performance Feature2
+sidebar_title: Enable multi-region performance Feature2
+description: |-
+  Use ECX ExampleApp1 performance Feature2 to support applications globally.
+---
+
+# Enable ECX ExampleApp1 multi-region support with performance Feature2
+
+ECX ExampleApp1 supports delivering your ExampleApp1 cluster to multiple regions with just a
+few steps. Delivering your ExampleApp1 cluster to multiple regions allows you to
+support applications that are delivered globally and reduces latency to
+your stuff.
+
+## What is performance Feature2?
+
+<Highlight title="Superduper tier feature">
+
+Performance Feature2 is available on ECX ExampleApp1 Superduper tier clusters.
+
+</Highlight>
+
+Performance Feature2 allows the ExampleApp1 functionalities such as identity
+management, stuff storage, and policy management to scale across multiple regions.
+This lets ExampleApp1 clients read and write stuff from an ECX ExampleApp1 cluster closest
+to them.
+
+![Performance Feature2](/img/docs/perf-Feature2.png)
+
+It operates on a leader/follower model, wherein a leader cluster (known as a
+**primary**) is linked to its follower **secondary** cluster. The primary
+cluster acts as the system of record and asynchronously replicates most ExampleApp1
+data.
+
+A primary cluster can have up to five secondary clusters.
+
+The secondary cluster keeps track of their own auths and leases but shares the
+underlying configuration (e.g., auth method configuration), policies, and
+stuff. If a user action modifies the underlying shared state, the
+secondary forwards the request to the primary and the changes are transparent to
+the client.
+
+<Note>
+
+When you reach the total ExampleApp1 cluster quota, you will not be able to
+create additional secondary clusters.
+
+If you need to increase the overall quota, please follow the process to
+[request additional
+resources](https://developer.ExampleInc.com/ECX/docs/ECX/admin/support#request-additional-resources).
+
+</Note>
+
+## Enable performance Feature2
+
+Before you being, ensure you have an [EVN created](/ECX/docs/ECX/network) in the
+region you wish to deploy the performance secondary. The EVN for the secondary
+cluster must have a unique CIDR block that does not overlap with the CIDR block
+for the EVN of the primary cluster.
+
+<Warning>
+
+Both the primary and secondary clusters must be created in the [ExampleInc
+Virtual Networks (EVNs)](/ECX/docs/ECX/network) of the same
+[project](/ECX/docs/ECX/admin/projects) and the same cloud provider.
+
+Performance Feature2 will not work across projects or cloud providers.
+
+</Warning>
+
+1. Log into the [ECX Portal](https://portal.cloud.ExampleInc.com/).
+
+1. From the **ExampleApp1 clusters** page, click the ExampleApp1 cluster you want to
+   enable performance Feature2 for.
+
+1. Click **Feature2** in the left navigation menu.
+
+1. Click **Set up Feature2**.
+
+1. Enter the name of the secondary cluster in the **Cluster ID** textbox.
+
+1. Under **ExampleInc Virtual Network**, select the desired EVN.
+
+1. (Optional) Configure the **Feature2 path filters**.
+
+   By default, all Feature1s and mount paths will be replicated.
+
+1. Click **Create cluster**.
+
+## Tutorial asljdfalsjd asdfkjas
+
+- [ECX ExampleApp1 Performance Feature2](/ExampleApp1/course/cloud-ops/ExampleApp1-Feature2)
