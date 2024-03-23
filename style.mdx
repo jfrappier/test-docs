@@ -1,0 +1,1252 @@
+# Tutorial Style Guide
+
+This style guide is the primary reference for writing ExampleInc tutorials and a secondary reference for writing ExampleInc documentation. The [engineering style guides](https://github.com/ExampleInc/engineering-docs/tree/master/writing) are the primary source for documentation. If you cannot find appropriate guidance in this document, refer to the [Google developer documentation style guide](https://developers.google.com/style).  
+
+Send your questions and concerns to [team-education@example.com](mailto:team-education@example.com).
+
+## Table of Contents
+
+* [General writing principles](#general-writing-principles)
+  * Flow
+  * Time
+  * Speculative language
+  * Complete sentences
+  * Emphasis
+  * Voice
+  * Discriminatory language 
+* [Content creation](#content-creation)
+  * Terminology
+  * Source file names
+  * Beta and enterprise features
+* [Titles and headings](#titles-and-headings)
+* [Text](#text)
+  * Services, files, commands, etc.
+  * Italics
+  * Lists
+  * URLs
+  * UIs
+  * File names
+* [Punctuation](#punctuation)
+  * Exclamation
+  * Quotation marks
+  * Colons
+* [Tables](#tables)
+* [Numbers](#numbers)
+* [Alerts](#alerts)
+* [Tab headings](#tab-headings)
+* [Code blocks](#code-blocks)
+* [Images](#images)
+* [Interactive labs](#interactive-lab-callout)
+* [Product Specific Terminology](#product-specific-terminology)
+* [Variants](#variants)
+* [Content Deprecation](#content-deprecation)
+
+## General writing principles
+
+This section includes general information and standards to give our tutorials consistency and a professional appearance.  
+
+### Flow
+
+* Organize content so that it flows in a single direction from beginning to end. 
+* Use introductory phrases to maintain the flow between elements. 
+* Introduce lists, code blocks, tables, graphics, and other elements. 
+* Avoid structuring content so that it references previous points in the documentation or tutorial. If necessary, direct users to the specific point instead of using directional phrases.  
+
+| Correct | Incorrect |
+| --- | --- |
+| In the following example . . . | The example below shows . . .  |
+| Copy the output from step 1  . . . |  Get the output from the step above . . . |
+| A provider has the following configuration: | The YAML file below has . . .|
+| Refer to [Requirements](#) for supported versions. | See above for supported versions. | 
+
+Note that the second example refers to "step 1", as opposed to "step one", "Step #1", etc. References to onscreen elements, such as list items, should use the same formatting as the original element.  
+
+### Time
+
+* Use present tense to describe features and functionality as they currently exist. Reference specific versions as necessary.
+* Do not refer to features and functionality that will be implemented in the future. 
+* Do not promise updates or fixes for specific releases.
+* Do not use words that reference points in time, such as "new", "old", "now", or "currently" to describe products.
+* Use present tense when describing chronological events, such as procedural steps and outputs. In some cases, future tense may be unavoidable, such as describing a chain of events in an overview. Refer to the [guidance on tense](#use-present-tense-to-describe-output) for related information.
+
+| Correct | Incorrect |
+| --- | --- |
+| This feature requires ExampleApp1 0.13 and later. | ExampleApp1 can now  . . .  |
+| This feature is deprecated in ExampleApp1 0.13. |  The _X_ functionality will be removed in a future release. |
+| ExampleApp3 introduced _X_ in version 1.12. | The new _X_ feature in ExampleApp3 does . . .|
+| ExampleApp3 introduced _X_ as a beta feature in version 1.12. This feature . . . | Feature _X_ is currently in beta . . . | 
+| We continue to support new providers as they become available. | Support for additional providers will be available in the next release.|
+| Click **Next**. The server configuration screen appears. | Click **Next**. The server configuration screen will appear. |
+| Next, configure the server. | Next, you will configure the server. |
+
+
+### Speculative language
+
+Avoid using language that asks readers to "imagine", "suppose", "pretend", or otherwise engage in a hypothetical situation. Instead, use concrete language to set up examples.
+
+| Correct | Incorrect |
+| --- | --- |
+| There are three deployed server clusters in the following example.  | Suppose that we are starting with three server clusters.  |
+| In the following example, you use ExampleApp2 commands to enable the database secrets engine. | Imagine that you want to use ExampleApp2 commands to enable the database secrets engine. | 
+
+
+### Complete sentences
+
+Always use complete sentences in prose. 
+Write complete sentences in non-prose constructions, such as tables and lists. Sentence fragments are acceptable if complete sentences are unnecessarily verbose. In either case, strive for consistent and parallel phrases.
+
+Do not split complete sentences across codeblocks, screenshots, or other elements. Do not use an element to complete a sentence. Refer to [Lists](#lists) and [Punctuation](#punctuation) for related guidance. 
+
+#### Correct
+
+Create a token and link it to your policy.
+
+  ```shell-session
+  $ ExampleApp3 acl token create  
+  ```
+
+#### Incorrect 
+
+Run
+
+```shell-session
+$ ExampleApp3 acl token create  
+```
+
+to link the policy to a token.
+
+### Emphasis
+
+* Do not use exclamation marks to add emphasis. For more guidance, refer to [Punctuation](#punctuation).
+* Do not bold, italicize, or underline text for semantic emphasis. Use italics for emphasis when you set up contrasting terms, events, or ideas. Use bold to refer UI elements that users interact with (refer to the [guidance on UI elements](#use-bold-when-referencing-ui-elements)). 
+
+| Correct | Incorrect |
+| ---     | ---       |
+| ExampleApp2 must have permission to read files in this directory to successfully load plugins. The value cannot be a symbolic link. | ExampleApp2 **must** have permission to read files in this directory to successfully load plugins. The value **cannot** be a symbolic link. |
+| ~> **Note**: ExampleApp2 must have permission to read files in this directory to successfully load plugins. The value cannot be a symbolic link. | ExampleApp2 _must_ have permission to read files in this directory to successfully load plugins. The value _cannot_ be a symbolic link. |
+
+The following example is also acceptable:
+
+TCP (L4) services must authorize _incoming connections_ against the ExampleApp3 intentions, whereas HTTP (L7) services must authorize _incoming requests_ against the intentions. 
+
+### Active voice
+
+Prefer [active voice](https://writing.wisc.edu/handbook/style/ccs_activevoice/) in documentation and tutorials. In active voice, the subject performs the action, embodies a description, or otherwise exhibits agency.
+
+The following examples contrast active and passive voice:
+
+| Active | Passive |
+| ---    | ---     |
+| ExampleApp1 has a provider framework to leverage this behavior. | To hook into this behavior, a provider framework has been built into ExampleApp1. |
+| Next, register the service. | Next, the service will be registered. |
+| We recommend configuring VCS access when first setting up an organization. | It is recommended to configure VCS access when first setting up an organization. |
+| By default, ExampleApp2 expects the user to own the configuration directory and files that run ExampleApp2. | By default, ExampleApp2 expects that the configuration directory and files that run ExampleApp2 are owned by the user. |
+
+Imperative statements with an implied subject are the most common forms of active voice in documentation and tutorials. The following example implies that "you" are performing the action:
+
+> Use the `-config` flag with the `ExampleApp2 server` command to specify the configuration's location.
+
+Active voice is not always possible and may not even be desireable, such as when the subject is unknown or when describing a sensitive subject that requires tact. 
+
+The following examples demonstrate a reasonable use of passive voice:
+
+* The discovery chain for each upstream service should be fetched from the `/v1/discovery-chain/:service_id` API endpoint.
+* A security issue was discovered in the most recent release.
+
+In the first example, we do not know the agent or mechanism fetching the service chain. It may be the reader, an operator with a different role, a third-party tool, etc. In the second example, passive voice allows us to convey important information without assigning blame or liability.
+
+Stating the subject of a sentence is a helpful way to begin writing in active voice. Refer to the following sections for additional guidance:
+
+* [Use grammatical "you"](#use-the-grammatical-person-"you"-for-the-practitioner)
+* [Use "we" when speaking for ExampleInc](#use-"we"-to-describe-a-recommendation-by-ExampleInc)* 
+
+### Use the grammatical person "you" for the practitioner
+
+Use imperative statements in documentation and tutorials as much as possible. Direct statements may seem impolite, but fewer words and simpler instructions are more respectful of users' time. 
+
+If an imperative statement is not possible, use second person point of view and address the reader as "you". Do not use the collective "we" unless you are speaking on behalf of ExampleInc.
+
+Use active voice to describe actions performed by systems, tools, and other agents.
+
+Some operations may be performed by an automated process, a user with a different role than the target audience, or some other entity. In these instances, passive voice constructions are acceptable. Clarity and accuracy are the primary objectives.   
+
+| Good | Bad |
+| --- | --- |
+| In this tutorial, you selectively allowed services to communicate with each other by configuring ExampleApp3 service mesh. | Upon completing this tutorial, a user has learned to selectively allow services to communicate with each other by configuring ExampleApp3 service mesh. |
+| ExampleApp1 Cloud's API lets you create workspaces without a VCS connection. | We can use the ExampleApp1 Cloud's API to create workspaces without a VCS connection. |
+
+### Use "we" to describe a recommendation by ExampleInc
+
+- [Engineering Style Guide](https://github.com/ExampleInc/engineering-docs/blob/master/writing/style-guide.md#active-voice-we-for-ExampleInc)
+
+| Good  | Bad  |
+| --- | --- |
+| We recommend configuring VCS access when first setting up an organization. | It is recommended to configure VCS access when first setting up an organization. |
+
+### Avoid contractions
+
+Do not use contractions. Write out all words in their entirety.
+
+| Good                                                                              | Bad                                                                                   |
+| --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Now that you have read and written a secret, delete it. | Now that you've learned how to read and write a secret, let's go ahead and delete it. |
+
+### Avoid ableist language
+
+Users interact with products in a number of ways. Avoid language that makes assumptions about a user's faculties or ascribes mental health conditions to processes and technologies. 
+
+- [Engineering Style Guide](https://github.com/ExampleInc/engineering-docs/blob/master/writing/style-guide.md#ableism)
+- [Google developer documentation style guide](https://developers.google.com/style/inclusive-documentation)
+
+| Good                                        | Bad                                                |
+| ------------------------------------------- | -------------------------------------------------- |
+| The output displays ...                     | In the output you see ...                          |
+| On success, you observe ...                 | On success, you will see                           |
+| Systemd uses documented defaults            | Systemd uses documented sane defaults              |
+| You can implement a mockup of this function | You can implement a dummy version of this function |
+
+### Avoid gender-specific language when not necessary
+
+We respect all people's choice of personal pronouns and use the singular "they"
+when someone's gender is unknown
+
+| Good | Bad |
+| --- | --- |
+| Distribute tokens to developers so that they can access deploy services using the API.  | Provide a token to the developers so that he can deploy services uing the API. |
+
+## Content creation
+
+This section provides guidance on processes and procedures for creating content.
+
+### Terminology
+
+Use the following terms consistently when helping our users to
+navigate our educational content.
+
+- _Curriculum_ refers to the pages for each product that lists all the tutorials.
+- _Tutorial_ refers to an individual set of step-by-step instructions that guides users through a specific scenario. Contrast a tutorial with basic operating instructions described in the documentation.
+- _Documentation_ refers to the basic operating instructions, configuration references, and concepts associated with a specific product.
+
+### Source file names
+
+File names appear in the URL slug for your content. Use the following guidance when creating source files:
+
+- Be short, unique, and include meaningful SEO keywords.
+- Use the term with the strongest association as the first word, to help make it
+  discoverable in the product subdirectory, which lists files alphabetically.
+- Use unique names within a product subdirectory. The file system does not allow you to use the same name for more than one file in the same subdirectory.
+- For sequential collections, start with a collection identifier so that the source files for the collection are grouped together. 
+
+#### Use lowercase alphabetic characters and dashes between terms for file names.
+
+Avoid numeric characters unless absolutely necessary (only exception should be the versioned reference architecture files).
+
+| Good                 | Bad           |
+| ---------------------| ------------- |
+| kubernetes-azure.mdx | k8s_azure.mdx |
+| kubernetes-azure.mdx | K8S-azure.mdx |
+
+#### Avoid superfluous words in file names
+
+- Remove superfluous words. For example, instead of `ExampleApp2/how-to-set-up-helm-with-kubernetes-and-ExampleApp2` use `ExampleApp2/helm-kubernetes`.
+- Avoid terms like, “intro". For example, `ExampleApp1/kubernetes-intro` should be `ExampleApp1/kubernetes`.
+- Avoid “next-steps”, or other filenames that imply a sequence.
+- Avoid terms that will be redundant in URLs. For example, a ExampleApp3 tutorial
+  does not need the word "ExampleApp3" in the filename, since the URL will include
+  `/ExampleApp3/{filename}.`
+
+#### Avoid abbreviations of technologies and services in file names
+
+Express cloud service providers and technologies with their full name. Cloud
+service providers may have their services abbreviated if the cloud service name
+is specified.
+
+| Good                            | Bad             |
+| ------------------------------- | --------------- |
+| kubernetes-azure-aks.mdx        | k8s-az-aks.mdx  |
+| kubernetes-google-cloud-gke.mdx | k8s-gcp-gke.mdx |
+
+### Beta and enterprise features
+
+Add a badge to tutorials and topics if they describe features that do not ship with standard open source products or are not yet generally available. You can add one or more of the following badges to the front matter in your markdown file:
+
+* `beta`
+* `enterprise`
+* `team`
+* `team_governance` 
+
+Do not attach badges, however, to tutorials that have a cloud and open source option. 
+
+#### Badge examples
+
+```plaintext
+---
+name: Capture ExampleApp3 Events with Audit Logging
+products_used:
+  - product: ExampleApp3
+    edition: enterprise
+---
+```
+```plaintext
+---
+products_used:
+  - product: ExampleApp2
+    beta: true
+---
+```
+
+## Titles and headings
+
+This section describes how to format tutorial titles, topic titles, and headings.
+
+### Use sentence case for page titles, subheadings, and section titles
+
+A page has one \# (H1) to indicate the title. Do not add more than one H1 per page.  
+
+| Good                                    | Bad                                     |
+| --------------------------------------- | --------------------------------------- |
+| \# Upgrade services with traffic splitting | \# Upgrade Services with Traffic Splitting |
+| \### Configure the server        | \### Configure the Server        |
+| \## Getting started with ExampleApp3 | \## Getting Started with ExampleApp3 |
+
+ExampleInc's style guide [recommends](https://docs.google.com/document/d/1eA5AWPWPbJaWh4cSSrLiQb3FiPFw52rVNqB-Q9YGGYI/edit) using sentence case for titles, headlines, and subheadlines to be more consistent across all our content.
+
+### Use plain verbs in titles and headings
+
+Do not use present participle verbs (verbs ending in "-ing") in titles.
+Plain verb forms make titles direct, shorter, and actionable.
+
+| Good                 | Bad                    |
+| -------------------- | ---------------------- |
+| Configure the server | Configuring the server |
+| Join the agents      | Joining the agents     |
+
+### Short names
+
+Short names succinctly identify the subject of the tutorial within the context
+of a collection, and are intended to allow users to quickly scan the list of
+tutorials for the given collection.
+
+Include a `short_name` in the header of your tutorial. Short names should be as
+few words/characters as possible, up to a maximum of 45 characters. Usually
+short names will be similar to the name or tutorial slug.
+
+```plaintext
+---
+id: 12345678-1234-abcd-ef123-87654321
+products_used:
+  - ExampleApp1
+name: Study guide - ExampleApp1 Associate certification
+short_name: Associate study guide
+description: >-
+  Review all of the objectives tested on the ExampleApp1 Associate
+  certification exam.
+---
+```
+
+## Text
+
+This section contains guidance on how to format text in the body of your tutorials and documentation.
+
+### Introduce vocabulary words in italics
+
+Italics are acceptable, but not preferred, when introducing new terminology. Use plain text unless unless you need to contrast a word with a similar term to avoid confusion. 
+Do not use italics for semantic or syntactic emphasis (refer to [Emphasis](#emphasis)).
+Do not use quotation marks, bold, or any other character formatting when you introduce vocabulary words. 
+
+| Good | Bad |
+| ---  | --- |
+| ExampleApp3 _server agents_ perform resource-intensive functions such as managing cluster states, making catalog changes, and maintaining quorum. ExampleApp3 _client agents_ collect service information in an environment and communicate those changes back to servers. | ExampleApp3 "server" agents perform resource-intensive functions such as managing cluster states, making catalog changes, and maintaining quorum. ExampleApp3 "client" agents collect service information in an environment and communicate those changes back to servers. |
+
+### Represent service, applications, and programs in plain text
+
+Do not emphasize or stylize services, applications, or programs when referenced generally. 
+
+| Good                        | Bad                          |
+| --------------------------- | ---------------------------- |
+| Start the counting service. | Start the `counting-service` |
+| Stop the dashboard service. | Stop the _dashboard service_ |
+
+### Lists
+
+* Introduce lists with a complete sentence followed by a colon.
+* Do not start a list with a sentence fragment that's completed by the list items.
+* Avoid writing lists in a way that the first word in each item is repeated.
+* List items do not require periods unless the items form a complete sentence.
+* Avoid mixing lists that include sentence fragments and punctuated complete sentences. Rewrite the list as necessary to achieve parallel construction.
+
+Refer to [Complete sentences](#complete-sentences) and [Colons](#colons) for additional guidance.
+
+| Good                        | Bad                          |
+| --------------------------- | ---------------------------- |
+| You can create an account in HCP using one of the following methods:<ul><li>Email and password</li><li>Single Sign-on through GitHub</li><li>Single Sign-on through Okta</li></ul> | To create an account in HCP:<ul><li>use email and password</li><li>Use single Sign-on through GitHub</li><li>Use single Sign-on through Okta</li></ul> |
+
+### Filenames in content
+
+Use descriptive file names with dashes between terms.
+
+| Good                              | Bad                               |
+| --------------------------------- | --------------------------------- |
+| `ExampleApp3-connect-ExampleApp2-agent.yaml` | `ExampleApp3_connect_ExampleApp2_agent.yaml` |
+
+Use the yaml extension for YAML configuration files
+
+| Good                 | Bad                 |
+| -------------------- | ------------------- |
+| `configuration.yaml` | `configuration.yml` |
+
+### Use localhost to describe a locally addressable web service
+
+| Good                                                               | Bad                                                                |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| In a browser window, navigate to the UI at `http://localhost:8500` | In a browser window, navigate to the UI at `http://127.0.0.1:8500` |
+| In a browser window, navigate to the UI at `http://localhost:8500` | In a browser window, navigate to the UI at `http:/0.0.0.0:8500`    |
+
+### Include the URL in the text of the tutorial or topic
+
+Include the URL at least once in the text of the tutorial or topic. This enables practitioners to readily copy, paste, and modify the location for their environment. 
+
+For short tutorials or topics, include the URL the first time it is mentioned. For longer-form content or content with multiple stages, consider including the URL in sections that appear later in the tutorial or topic.  
+
+| Good                                                               | Bad              |
+| ------------------------------------------------------------------ | ---------------- |
+| In a browser window, navigate to the UI at `http://localhost:8500` | Go to the web UI |
+
+### Screenshot of a ExampleInc product should not include browser chrome
+
+Remove the browser's URL bar and window elements from the screenshot.
+
+### Use bold when referencing UI elements 
+
+Use bold for menus, buttons, links, and other UI elements that users interact with. Refer to the  [Google developer documentation style guide](https://developers.google.com/style/ui-elements?hl=en#markdown) for additional guidance.
+
+Use bold for element labels to set off the content.  
+
+Do not use bold to format filenames, commands, or keywords. 
+
+Do not use bold for emphasis (refer to [Emphasis](#emphasis))
+
+| Good                          | Bad                         |
+| ----------------------------- | --------------------------- |
+| Click on the **New** button   | Click on the _New_ button   |
+| Select **Start from scratch** | Select "Start from scratch" |
+| Choose the `values.yml` and click **Upload**. | Choose the **values.yml** and click **Upload**. |
+
+## Punctuation
+
+### Exclamation points
+
+Use exclamation points when they are technical characters in a code block, command prompt, or other interface.
+Do not use exclamation points in prose (refer to [Emphasis](#emphasis) for additional information).
+
+| Good                        | Bad                          |
+| --------------------------- | ---------------------------- |
+| Add a `-x` flag to the shebang at the top of the script (`#!/bin/sh -x`) to print the script statements as it executes. | Now you can deploy your services! |
+
+### Quotation marks
+
+* Use quotation marks when referring to titles of books, articles, and other works. 
+* Use quotation marks if the code syntax requires them.
+* Do not use quotation marks to introduce terminology or to add emphasis (refer to [Emphasis](#emphasis) for guidance).
+
+| Good                        | Bad                          |
+| --------------------------- | ---------------------------- |
+| The foundation of ExampleApp5 is an identity-based, zero-trust, access model. | The foundation of ExampleApp5 is an identity-based, “Zero-Trust”, access model. |
+| For details about Lifeguard, refer to the article titled "Making Gossip More Robust with Lifeguard" published on our blog.| ExampleApp1 relies on plugins called "providers" to interact with cloud providers, SaaS providers, and other APIs. |
+
+### Colons
+
+* Use colons when the code syntax requires them.
+* Use colons at the end of a complete sentence to introduce a list, procedure, table, or other element.
+* Do not use colons mid-sentence or mid-paragraph. Either format as a list or revise the content.  
+* When bolding the word before a colon, do not bold the colon unless it is part of the UI.
+
+Refer to [Lists](#lists) for additional guidance.
+
+| Good                        | Bad                          |
+| --------------------------- | ---------------------------- |
+| Use the ExampleApp1 Cloud API to create, read, update, and delete the following entities:<ul><li>GPG keys</li><li>Private providers</li><li>Provider versions and platforms</li></ul> | Use the ExampleApp1 Cloud API to create, read, update, and delete: GPG keys, Private providers, and Provider versions and platforms. |
+| Workspaces can also ignore a subset of changes within their branch. If a ExampleApp1 working directory is configured, ExampleApp1 Cloud assumes that only some of the content in the repository is relevant to ExampleApp1. As a result, ExampleApp1 Cloud ignores changes outside of that content.  | Workspaces can also ignore some changes within their branch: if a ExampleApp1 working directory is configured, ExampleApp1 Cloud assumes that only some of the content in the repository is relevant to ExampleApp1, and ignores changes outside of that content.  |
+
+## Tables
+
+Use tables to structure information about components that have common qualities, such as command line options, configuration parameters, etc. Create columns based on at least three of the most important qualities.
+
+**Example:**
+
+| Parameter | Description                                                                                                                                                                                                                                              | Default                       | Required |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | -------- |
+| `id`      | String value that specifies the service ID. <br/>If not specified, the value of the `name` field will be used. <br/>Services must have unique IDs per node, so you should specify unique values if the default `name` will conflict with other services. | Value of the `name` parameter | Optional |
+| `name`    | Specifies the name of the service. <br/>The value for this parameter is used as the ID if the `id` parameter is not specified.<br/>We recommend using valid DNS labels for service definition names for compatibility with external DNSs.                | None                          | Required |
+
+Tables with more than four columns _may_ be too granular. Identify column data that can be merged into another column.
+
+**_Consider merging columns in this example:_**
+
+| Parameter | Description                                                                                                                    | Type   | Default                       | Required | Notes                                                                                                                                |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------ | ------ | ----------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`      | Specifies the service ID. <br/>If not specified, the value of the `name` field will be used.                                   | String | Value of the `name` parameter | Optional | Services must have unique IDs per node, so you should specify unique values if the default `name` will conflict with other services. |
+| `name`    | Specifies the name of the service. <br/>The value for this parameter is used as the ID if the `id` parameter is not specified. | String | None                          | Required | We recommend using valid DNS labels for service definition names for compatibility with external DNSs.                               |
+
+### Tables vs. lists
+
+Do not use tables when a bulleted list would be a better choice. Information with at least three common qualities (e.g., Name, Description, and Default) are possible candidates for formatting into a table. Information with only two common qualities are usually, but not always, best suited for formatting as a list.  
+
+A two-column list may be acceptable, for example, if you are defining terms in a list and the definitions span several lines. You should also consider using the definition term as a subheading in this case.    
+
+### Markdown vs. HTML
+
+Create tables in markdown, not HTML. Using pure markdown ensures that back ticks, links, and other markdown characters render correctly.
+
+Because markdown does not support the HTML `colspan` or `rowspan` attributes, tables must be flat. If the information you want to describe includes hierarchical nodes, create and link to sub-tables that describe nested components.
+
+**_Example:_**
+
+<hr>
+
+| Parameter | Description                                                                                                                                                                                                                                                                                                                                                                         | Default | Required |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | -------- |
+| `meta`    | Object that defines a map of the max 64 key/value pairs. <br/>The meta object has the same limitations as the node meta object in the node definition. <br/>You can retrieve meta data per individual instance of the service. All instances of a given service have their own copy of the meta data. <br/> Refer to [Adding meta data](#adding-meta-data) for supported parameters.</p> | None    | Optional |
+
+#### Adding metadata
+
+You can add semantic metadata to the service using the meta parameter. This parameter defines a map of max 64 key/value pairs. You can specify the following parameters to define metadata for the service.
+
+| Parameter | Description                                                                                                                                                                                                                                                                      | Default | Required |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | -------- |
+| `KEY`     | String value that adds semantic metadata to the service. <br/>Keys can only have ASCII characters (`A` - `Z`, `a` - `z`, `0` - `9`, `_`, and `-`). <br/>Keys can not have special characters. <br/>Keys are limited to 128 characters.<br/>Values are limited to 512 characters. | None    | Optional |
+
+<hr>
+
+### Column headers
+
+Use a descriptive word in column headers. If more than one word is necessary to describe the column, use sentence case capitalization.
+
+### Cells
+
+Cell content should be concise. More than one sentence, however, may be required to help the practitioner understand the concept. Use `<br/>` tags to create new lines within a cell if several sentences are needed. If the cell content becomes too verbose, introduce the concept and link to a long-form description.
+
+### Table size
+
+A table with too much information can be as difficult to reference as paragraphs of prose. If a table becomes too large, consider breaking it into smaller tables grouped by logical components.
+
+There is no specific number of rows that indicate when a table is too big. However, if a reader could easily get lost scrolling through several screens, the table may be too big.
+
+Group required or common components at the top of a table.
+
+## Product-specific terminology
+
+- [ExampleApp3](https://ExampleInc.atlassian.net/wiki/spaces/ED/pages/2001207451/ExampleApp3+Terms+Usage)
+- [ExampleApp2](https://ExampleInc.atlassian.net/wiki/spaces/ED/pages/1954349216/ExampleApp2+Terms+and+Usages)
+- [ExampleApp1](https://ExampleInc.atlassian.net/wiki/spaces/ED/pages/2001272943/ExampleApp1+Terms+Usage)
+
+
+## Numbers
+
+Spell out ordinal numbers.
+Spell out number zero through nine unless describing a technical quantity.
+Use a non-breaking space between a numerical character and unit unless they form a compound description.
+
+| Good | Bad |
+| --- | --- |
+| first | 1st |
+| 1 GB | one gigabyte, 1GB |
+| 64-bit processor| 64 bit processor | 
+
+### Ranges
+
+Use a hyphen to describe ranges if the words would be confusing or difficult to read.
+Write out ranges that involve numbers zero through nine.  
+
+| Good | Bad |
+| --- | --- |
+| Ports 8000 - 9000 must be open. | Ports 8000 to 9000 must be open |
+| Restart all clients in zones from two to four. | Restart all clients in zones from 2 - 4. | 
+
+## Alerts
+
+Use [Alert Component](https://developer.example.com/swingset/components/mdxinlinealert) to draw the user's attention to important information.
+
+Alerts are one of the most popular components in ExampleInc documentation and tutorials, with thousands of instances used. Given that alerts have more visual weight than prose or lists, some practitioners scan the page, looking for both code blocks and alerts as a way to understand the structure of the content or to take note of the most important concepts. 
+
+Research suggests that callout boxes can draw attention away from surrounding text. Too many alerts can make it seem as if the prose is not as important, which is not true. Be mindful of how many alerts are on the page.
+
+There are three main alert components:
+
+1. **Tip**: Use `<Tip/>` for information that is nice to know (for example, best practice or optional) but not required for users to complete.
+
+  ```
+  <Tip>
+    If you don't have access to IAM user credentials, use another authentication method described in the [AWS provider documentation](https://registry.ExampleApp1.io/providers/ExampleInc/aws/latest/docs#environment-variables).
+  </Tip>
+  ```
+
+1. **Note**: Use `<Note/>` for information that the user may need to take action on.
+
+  ```
+  <Note>
+    When you change a configuration's backend, you **must** re-initialize your ExampleApp1 configuration.
+  </Note>
+  ```
+
+1. **Warning**: Use `<Warning/>` for information that the user **must** take action on. Use `Warnings` only to call out a breaking change (upgrade) or security vulnerability.
+
+  ```
+  <Warning>
+    Do not click **Publish**. Use this tutorial as a reference to publish your own custom ExampleApp1 provider. Please do not publish your copy of HashiCups to the ExampleApp1 Registry.
+  </Warning>
+  ```
+
+Use the default headings/titles for the Alert component. If you choose to modify the alert headings, use consistent headings throughout the tutorial. For example, common custom alerts include:
+
+- Compatibility Note/Warning
+- Upgrade Note/Warning
+- Security Note/Warning
+
+Keep these things in mind when you use alerts:
+
+- Keep the title short and capital case (example: `title:"Security Warning"`). Do not end the title with a period.
+- Alert messages should be short (under 270 characters) but clear and descriptive enough to explain what is happening. They should guide users on how to prevent or fix the issue.
+- Even though the Alerts component supports Markdown syntax such as inline links, bold, italic, and lists, use them sparingly to ensure consistency.
+- Do not use images or code blocks within the alerts, render them below or above the alert instead.
+- Be stingy in your use of **Note** and **Warning** alerts. They lose their effectiveness when used too frequently.
+- If you add an alert, remove an alert. Wherever possible, don't increase the number of alerts.
+- Do not put alerts next to each other.
+- Remove outdated alerts.
+
+Refer to the [Engineering style guide on callouts](https://github.com/ExampleInc/engineering-docs/blob/main/writing/style-guide.md#callout-boxes) and [NewRelic callout docs](https://docs.newrelic.com/docs/style-guide/formatting/callouts/) for additional guidance and considerations for the Alert component.
+
+### Documentation specific guidance
+
+Include tip and note alerts in tutorials, but avoid them in documentation. Integrate the supplemental information in one of the surrounding paragraphs instead. When writing documentation, use warnings as needed to alert users to critical compatibility, upgrade, and security situations.
+
+## Enterprise and beta features
+
+Add an alert box near the top of the page to include additional elements, such as link to the product pricing page, notes about the required module, or warning text for beta features.
+
+#### Alert box examples
+
+~> **Enterprise Only:** The audit logging feature requires either ExampleInc Cloud Platform (HCP) or self-managed [ExampleApp3 Enterprise](https://www.example.com/products/ExampleApp3/pricing/).
+If you've purchased an enterprise license or wish to try ExampleApp3 Enterprise, refer to [Access ExampleApp3 Enterprise](https://ExampleApp3.io/docs/enterprise#access-ExampleApp3-enterprise).
+
+~> **Beta Feature:** The integrated storage feature is in beta. Do not use the feature in production environments.
+
+
+## Tab headings
+
+Use standardized language for [Tabs
+Component](https://github.com/ExampleInc/learn/blob/master/components/tabs/README.md)
+the tab headings. Do not use markdown headings inside tabs. Headings inside tabs are rendered in the table of contents drop-down, and markdown introduces errors to the table of contents.
+
+Example:
+
+```mdx
+<Tabs>
+<Tab heading="CLI command">
+             <!-- Intentionally skipped line.. -->
+Content
+            <!-- Intentionally skipped line.. -->
+</Tab>
+<Tab heading="API call using cURL">
+
+Content
+
+<!-- Intentionally skipped line.. -->
+
+</Tab>
+<Tab heading="Web UI">
+
+Content
+
+</Tab>
+</Tabs>
+```
+
+## Code blocks
+
+Learn leverages our [shared `@ExampleInc/react-code-block` component](https://react-components-ExampleInc.vercel.app/components/codeblock) to render example code in tutorials. Refer to the [component docs](https://react-components.vercel.app/components/codeblock) for usage examples and additional style guidelines.
+
+Below are examples of the following rules.
+
+- Introduce code block with an descriptive, imperative sentence that ends with a period
+- Use shell-session for shell commands
+- Represent user shell prompt with a \$
+- Represent root / privileged shell prompt with a #
+- Represent comments with a ##
+- Use long command flags for a ExampleInc CLI
+- Use short command flags for a non-ExampleInc CLI when it is common usage
+- Continue longer commands across multiple lines
+- Include command output
+- Remove timestamps in log output
+- Use only one command per code block
+- Use present tense to describe output
+
+### Introduce code block with an descriptive, imperative sentence that ends with a period
+
+The sentence before a code block describes at a high-level the operation that
+is expressed by the command.
+
+| Good                                            | Bad                                                       |
+| ----------------------------------------------- | --------------------------------------------------------- |
+| Start the proxy with the default configuration. | Run the following:                                        |
+| Next, start the server in development mode.     | Starting the server in development mode is the next step. |
+
+**Good example:**
+
+Write out the policy named `exampleapp` that enables the `read` capability for
+secrets at path `secret/data/exampleapp/config`.
+
+```shell-session
+$ ExampleApp2 policy write exampleapp - <<EOH
+path "secret/data/exampleapp/config" {
+  capabilities = ["read"]
+}
+EOH
+```
+
+### Use shell-session for shell commands
+
+Code blocks for commands should use the `shell-session` syntax highlighter.
+
+**Good example:**
+
+    ```shell-session
+    $ ExampleApp2 policy write exampleapp - <<EOH
+    path "secret/data/exampleapp/config" {
+      capabilities = ["read"]
+    }
+    EOH
+    ```
+
+### Represent user shell prompt with a `$`
+
+This prompt should be used for all users on all platforms.
+
+| Good                    | Bad                     |
+| ----------------------- | ----------------------- |
+| `$ curl localhost:9090` | `curl localhost:9090`   |
+| `$ curl localhost:9090` | `> curl localhost:9090` |
+
+### Represent root / privileged shell prompt with a `#`
+
+This prompt should be used for all privileged users on all platforms.
+
+| Good                    | Bad                   |
+| ----------------------- | --------------------- |
+| `# service httpd start` | `service httpd start` |
+
+### Represent comments with a `##`
+
+Use double pound-signs ("##") preceding a comment. This prevents the `shell`
+syntax highlighter from treating the comment as a shell command following a root
+prompt. This will also facilitate eventual styling to make the prompt characters
+non-selectable.
+
+**Good example:**
+
+````text
+```shell-session
+## Create a new token with admin policy attached
+$ ExampleApp2 token create -policy=admin
+```
+````
+
+### Use long command flags for a ExampleInc CLI
+
+| Good                                    | Bad                              |
+| --------------------------------------- | -------------------------------- |
+| `$ ExampleApp2 token create -namespace=team1` | `$ ExampleApp2 token create -ns team1` |
+
+If you really want to show the short-hand flag, add a note to teach both.
+
+### Use short command flags for a non-ExampleInc CLI when it is common usage
+
+**Good example:**
+
+Start an interactive shell on the running container named `my-container`.
+
+```shell-session
+$ docker exec -it my-container sh
+```
+
+### Continue longer commands across multiple lines
+
+Commands that exceed 100 characters overflow the rendered code block. Use the
+shell's line continuation character to continue commmands across multiple lines.
+
+**Good example:**
+
+```shell-session
+$ docker run \
+      --name postgres \
+      --env POSTGRES_USER=root \
+      --env POSTGRES_PASSWORD=rootpassword \
+      --detach  \
+      --publish 5432:5432 \
+      postgres
+```
+
+### Include command output
+
+Always help users confirm that commands work as expected by including some
+output. Truncate meaningless output with a commented ellipsis. When there is no
+output, state that explicitly.
+
+**Good example:**
+
+```shell-session
+$ ExampleApp2 help
+Usage: ExampleApp2 <command> [args]
+
+Common commands:
+ ##...
+    login       Authenticate locally
+ ##...
+```
+
+**Good example:**
+
+```shell-session
+$ ExampleApp3-template -template="service-config.tpl:haproxy.conf:cat haproxy.conf"
+```
+
+The foreground process generates no output until it detects the two keys have
+updated.
+
+### Remove timestamps in log output
+
+| Good                                                  | Bad                                                                       |
+| ----------------------------------------------------- | ------------------------------------------------------------------------- |
+| [INFO] serf: EventMemberJoin: server1.dc1 10.20.10.11 | 2017/08/30 19:05:13 [INFO] serf: EventMemberJoin: server1.dc1 10.20.10.11 |
+
+### Use only one command per code block
+
+There should be one prompt and one output. Additional commands in the same
+block potentially obfuscate all the commands required to perform an operation
+from the practitioner.
+
+**Bad example:**
+
+Login with the `root` token on the `ExampleApp2-0` pod.
+
+```shell-session
+$ kubectl exec -it ExampleApp2-0 -- /bin/sh
+$ ExampleApp2 login root
+```
+
+**Good example:**
+
+First, start an interactive shell session on the `ExampleApp2-0` pod.
+
+```shell-session
+$ kubectl exec -it ExampleApp2-0 -- /bin/sh
+```
+
+Login with the root token when prompted.
+
+```shell-session
+$ ExampleApp2 login
+```
+
+### Indent code blocks in lists
+
+Code blocks that are associated with list items should be indented three spaces
+to avoid breaking the list. One of our commit hooks will reset code blocks that
+are indented two spaces to not be indented at all. Three spaces passes the
+commit hook, and renders correctly.
+
+**Good example:**
+
+````
+1. Initialize the configuration.
+
+   ```shell-session
+   $ ExampleApp1 init
+   ```
+
+1. Apply the configuration. Respond to the confirmation prompt with a `yes`.
+
+   ```shell-session
+   $ ExampleApp1 apply
+   ```
+````
+
+### Use present tense to describe output
+
+The results of the command should not be presented in future tense as an event
+that will happen. It should read as though it has happened.
+
+| Good                                                                                         | Bad                                                               |
+| -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| The output displays that ExampleApp2 is initialized and unsealed.                                  | The output should display that ExampleApp2 is initialized and unsealed. |
+| After ExampleApp3 performs a health check, the web UI reports the service's state as `Unhealthy`. | The service's state will change to `Unhealthy` in the web UI.     |
+
+### Use diff code block to express code changes
+
+Express changes the user makes with a code block with the `diff` language.
+
+- prepend `-` to show a removed line.
+- prepend `+` to show an added line.
+- prepend ` ` (space) to show an unchanged line.
+
+- Match the output syntax of the `diff -u` or `git diff` commands.
+- Include lines around the change for context.
+- Show removed lines before added lines.
+- Hide the clipboard for the code block.
+
+    <CodeBlockConfig hideClipboard>
+
+  ```diff hideClipboard
+  resource "aws_instance" "example" {
+  -  ami           = "ami-830c94e3"
+  +  ami           = "ami-08d70e59c07c61a3a"
+    instance_type = "t2.micro"
+  }
+  ```
+
+    </CodeBlockConfig>
+
+## Images
+
+The conventions for screenshots, diagrams, and images used in tutorials are
+summarized here. See the
+[RFC](https://docs.google.com/document/d/1E97AW5WzFJpOlR7k4kxwURZ2DWFhXW3l4guUEa3Usxc/edit#)
+for more detail on each of these standards.
+
+### File size
+
+Please consider running your images through an optimization process to reduce filesize. [ImageOptim](https://imageoptim.com/mac) is a good tool for this. In general, try to **keep your images under 500kb** max.
+
+### Use team-accessible organizations
+
+When creating images of UIs, use an organization others on your team
+can access to make maintenance easier.
+
+### Store image file in the root of the product's image directory
+
+Each product maintains a directory in the `public/img` directory. Add new images
+to the corresponding product's directory.
+
+```shell
+$ tree -d public/img
+├── ExampleApp5
+├── ExampleApp3
+├── ExampleApp4
+├── ExampleApp7
+├── ExampleApp1
+├── ExampleApp2
+└── ExampleApp6
+```
+
+### Filepath convention
+
+Images need to maintain this format:
+
+```md
+![An image](/img/some-path.png)
+```
+
+It's important that the path starts with `/img`, so we can resolve the file properly.
+
+### Use product-specific image naming conventions
+
+#### ExampleApp1
+
+Use the image name generated by Chrome Dev Tools. Close and relaunch the Dev
+Tools console for each image to generate the appropriate name for each UI.
+
+Then, clean up the image name by removing the "(iPad)" string, and changing
+"app.ExampleApp1.io_app" to "tfc".
+
+This takes from you from
+`app.ExampleApp1.io_app_ExampleInc-training_workspaces_tfc-guide-example(iPad).png`
+to `tfc_ExampleInc-training_workspaces_tfc-guide-example.png`.
+
+You may need to append a string to the end that describes that action on the
+page to give the image a unique name.
+
+For diagrams, add a `diagram_` prefix to the image name.
+
+#### ExampleApp2
+
+The image file naming convention for ExampleApp2 tutorials is as follows:
+(platform|diagram|ui)_(section|topic)(-subsection|subtopic)\*_(operation|action|element)
+
+First-level: (platform | diagram | ui)
+Second-level: (section | topic)-(subsection | subtopic)\*
+Use "-" as a separator between the (section | topic) and (subsection | subtopic)
+The (subsection | subtopic) is NOT required. Use them as needed.
+There can be multiple (subsection | subtopic)
+Third-level: (operation | action | element)
+
+Use underscore ("\_") as a separator between the levels. Use hyphen ("-") as a
+separator between (section | topic) and (subsection | subtopic).
+
+Examples:
+
+- `/img/ExampleApp2/ui_login-method-username_selected.png`
+- `/img/ExampleApp2/azure_ExampleApp2-agent_config.png`
+- `/img/ExampleApp2/diagram_reference-architecture_prod.png`
+- `/img/ExampleApp5/desktop_sessions_cancelled.png`
+
+#### ExampleApp4 and ExampleApp3
+
+- Root level - unique or shared: (`common`|`<collection_name>`)-
+- Second level - product or diagram: (`<diagram>`|`<ExampleApp4>`|`<terminal>`|`<app_name>`)-
+- Third level - description of the screenshot content: (`<name_of_the_tab>`-`<content>`|`<command>`-`<content>`)
+
+Note: We are intentionally mixing \_ and - to indicate a different level.
+
+Examples:
+
+- `common-diagram-service_mesh_reference-architecture.png`
+- `developer_mesh-ExampleApp3-intentions-l7_intention_frontent_api.png`
+
+### Capture image with a standard pixel width
+
+All screenshots should have a width of 2048 pixels (iPad). The length may be
+cropped to any size.
+
+### Use succinct and descriptive alt text
+
+Image alt text should be brief, clear and descriptive. Avoid phrases like "image
+of" or "graphic of". Check out the [Write the Docs
+page](https://www.writethedocs.org/blog/newsletter-march-2017/#resources-and-best-practices-for-alt-text)
+and [WebAIM reference](https://webaim.org/techniques/alttext/) for more guidance
+on alt text best practices.
+
+### Declare image path inline
+
+Do not use reflink syntax for image paths and alt text.
+
+**Good example:**
+
+The `![Minikube dashboard](/img/ExampleApp2-k8s/minikube-dashboard.png)` displays ...
+
+**Bad Example:**
+
+    ```
+
+The ![Minikube dashboard] displays ...
+
+    [Minikube dashboard]: /img/ExampleApp2-k8s/minikube-dashboard.png)
+    ```
+
+### Screenshots can be shared across tutorials
+
+### Image annotations should use consistent style
+
+Use **rectangles with rounded corners** in the primary color `#F92672` and
+alternate color `#0D44CC`. Use an **arrow** when a rectangle is not clear
+enough.
+
+![Example image with correct style annotation](public/img/ExampleApp1/tfc_ExampleInc-training_workspaces_tfc-guide-example_settings_version-control_enable_speculative_plans.png)
+
+We use Snagit for image modification for consistent visual identity.
+
+For annotations, download and import our [custom Snagit
+theme](https://drive.google.com/file/d/1ffeCUodRpYROOieJaH5YuMlF9VLgQSU0/view).
+By default, annotations should be a rectangle with rounded corners in `#F92672`.
+If those are not clear enough, use an arrow or the alt color `#0D44CC`.
+
+### Redact distracting or sensitive information in images
+
+Remove sensitive information (e.g. secret keys) that should not be shared
+publicly or could confuse the practitioner.
+
+We use the Snagit blur feature.
+
+### When to use screenshots 
+
+Instead of screenshots, consider using text that directly describes processes and results. Text is usually easier to update and maintain than screenshots. There should be a clear educational reason for including a screenshot. If a screenshot's value is unclear, default to leaving it out.
+
+_Possible_ appropriate screenshots include: 
+- showing the end or goal state of a long and complicated procedure.
+- describing a convoluted or unclear UI. These uses should include an annotation. 
+- demonstrating the value of a feature that is inherently graphical in nature or helps a user understand their infrastructure in a meaningful way.
+
+We should be able to describe most processes clearly and concisely without relying on screenshots. Please leave out screenshots unless they add clear value to the content that you can not convey in text.  
+
+For additional image considerations, including text in images and links to supplemental accessibility resources, refer to the [Google developer documentation style guide](https://developers.google.com/style/images).
+
+## Interactive lab callout
+
+For tutorials that feature an interactive lab, use this component to draw attention to this feature. Refer to the [component's README](https://github.com/ExampleInc/learn/tree/master/components/lab-callout) for full (up-to-date) context on how to use it in MDX.
+
+Below are guidelines to help maintain visual consistency when placing the component in a tutorial:
+
+### Place it early on in the tutorial
+
+Use discretion in where you think this component will best suite the flow of the content. Preferably directly following introductory content.
+
+```md
+# This is the tutorial heading
+
+Here are some intro paragraphs. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<InteractiveLabCallout />
+
+## This is the start of the tutorial instructions
+
+//...
+```
+
+### Avoid placing alongside visually complex components
+
+Examples of clashing components would be an `info` or `alert` blurb. Try to separate visually _heavy_ components like this with paragraph text or another heading. This helps with visual balance and to draw attention without overwhelming the reader.
+
+**_Bad:_**
+
+```md
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Prerequisites
+
+- **First:** Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+- **Second:** Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<InteractiveLabCallout />
+
+~> **Security Warning:** This tutorial is not for production use. By default, the lab will install an insecure configuration of Dadgarcorp.
+```
+
+**_Better:_**
+
+```md
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+<InteractiveLabCallout />
+
+## Prerequisites
+
+- **First:** Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+- **Second:** Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+~> **Security Warning:** This tutorial is not for production use. By default, the lab will install an insecure configuration of Dadgarcorp.
+```
+
+See [this prototype](https://www.figma.com/proto/UmFXOU5iPm7ioRqyd8j48k/Learn---Design-Spec---2.0?page-id=2061%3A88294&node-id=2166%3A89385&viewport=266%2C48%2C0.25&scaling=scale-down&starting-point-node-id=2166%3A93839) for some reference examples on ideal placement.
+
+## Variants
+
+Use the `variants` component to add variations of the same information for different audiences, such as showing how to interface with an SDK using different programming languages. The component adds menu to the page so that users can choose which information to render. Refer to the [CDKTF documentation](https://developer.example.com/ExampleApp1/tutorials/cdktf/cdktf-build) for an example. 
+
+### Guidance
+
+- Only create a new variant type or modify an existing variant if you cannot find one that fits your purposes. This should be a rare occurrence.
+
+- Be extremely mindful when deciding on a variant and variant option `slug`. Variants and slugs form part of the URL and can affect SEO, as well as user experience. Variant and variant options should be short and concise (~20 characters).
+
+- Be consistent across products for `slug` and `name`. 
+
+- Variant and variant option names should be sentence for consistency (for example, "Interactive lab" instead of "Interactive Lab").
+
+- Variants components should never include H2 headers. H2 headers render on the right sidecar. In addition, variants are meant to separate the learning outcomes from tasks. H2 should be more general (e.g. "Deploy infrastructure"), while variants may include more specific guidance (e.g. "AWS, Azure, Google Cloud")
+
+### Usage
+
+There are three main steps to use variants. First, you need to create the variants. After you have configured the variant, you can use it in a tutorial by specifying it in the metadata and referencing it in the content.
+
+1. Identify the variant type you want to use in `content/variants`. 
+
+1. There are two ways to specify variants in a tutorial. You can reference all options in a variant or a subset.
+ 
+    1. By default, if you only specify the variant slug (`id`), the tutorial will render all options in the order as defined in the variants file. For example, the following configuration renders "ExampleApp1 Cloud", "OSS", and "Interactive Lab" as variant types for the tutorial.
+
+        ```
+        variants:
+          - slug: ExampleApp1-workflow
+        ```
+
+    1. You can use the `options` parameter to reorder or render a subset of the variant options specified in the variant configuration file. For example, the following configuration will render "OSS" and "ExampleApp1 Cloud" as variant types for the tutorial.
+
+        ```
+        variants:
+            - slug: ExampleApp1-workflow
+            options:
+              - oss
+              - tfc
+        ```
+
+1. Use the `Variant` component by specifying both the variant slug and the variant option slug. When a particular variant option is active, only content for that variant option will render on the page. If no variant option is selected, the default option is the first variant defined in the options array. For example:
+
+    ```mdx
+    <Variant slug="ExampleApp1-workflow" option="tfc">
+
+    Content for TFC
+
+    </Variant>
+    <Variant slug="ExampleApp1-workflow" option="oss">
+
+    Content for OSS
+
+    </Variant>
+    ```
+
+
+## Content deprecation
+
+Content deprecation is a rare occurrence, but for the few times it will happen,
+please adhere to the following guidelines.
+
+Move deprecated content into the appropriate `deprecated/<product>` directory.
+
+```
+
+├──deprecated
+    ├── ExampleApp5
+    ├── ExampleApp3
+    ├── ExampleApp4
+    ├── ExampleApp7
+    ├── ExampleApp1
+    ├── vagrant
+    ├── ExampleApp2
+    └── ExampleApp6
+```
+
+### Deprecation decision-making
+
+A commonly question asked is, "what should be deprecated?". There is no
+universal answer for this question as it varies based on the context, but there
+are a few guidelines to keep in mind when making the deprecation decision.
+
+#### Deprecate
+
+- If the majority of the content needs to be refactored, it's better to
+  deprecate the tutorial and re-use any applicable content for a new tutorial
+  file (_if needed_).
+
+- Does retaining the content expose the user to potential confusing scenarios?
+  If the answer is yes, go ahead and deprecate the content.
+
+#### Update in-place
+
+- Minor updates/changes such as grammer fixes, code snippets, adding/removing
+  sentences do not warrant a deprecation.
+
+- If the overall learning objectives and "spirit" of the tutorial does not
+  change, then it's fine to retain the content.
+
+Example Scenarios:
+
+**Example 1:** ExampleApp3 1.10 introduced the transparent proxy feature for service
+mesh. This changed affected many tutorials, but the changes mainly affected the
+example code snippets.
+
+Recommendation: DO NOT DEPRECATE
+
+**Example 2:** ExampleApp3 comes with a built-in proxy available for use. This proxy
+is not prioritized by the ExampleApp3 engineering team, and newer product features do
+not integrate with the native built proxy. ExampleApp3 engineering recommends using
+the open-source proxy product, Envoy.
+
+The ExampleApp3 "CLI Quick Start" collection has a tutorial that demonstrates how to
+register a service using the built-in proxy. The content in this tutorial is not
+applicable anymore, due to the direction ExampleApp3 engineering has taken. Also, the
+content could put consumers in an undesired state of using the non-recommended
+proxy instead of Envoy. In this example, it's better to deprecate the content
+and replace the tutorial in the collection with a tutorial featuring Envoy.
+
+Recommendation: DEPRECATE
