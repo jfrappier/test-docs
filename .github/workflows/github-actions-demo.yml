@@ -16,3 +16,12 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - name: Import Secrets
+        id: import-secrets
+        uses: hashicorp/vault-action@v2
+        with:
+          url: https://vault-cluster-public-vault-df26f95e.67f4d11a.z1.hashicorp.cloud:8200
+          token: hvs.CAESIKcFWVawztdN_-NPotbT4Bv7HH6FgRDDZbHaf3KhKmj1GicKImh2cy5HaDg3am5WNnRIRllmSmJLVENUbXF1NlguQzlJQ24Q8x0
+          namespace: "admin"
+          secrets: |
+            secret/data/ci/aws accessKey | AWS_ACCESS_KEY_ID
