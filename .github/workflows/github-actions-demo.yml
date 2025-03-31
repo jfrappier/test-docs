@@ -25,4 +25,4 @@ jobs:
           namespace: "admin"
           secrets: |
             secret/data/ci/aws accessKey | AWS_ACCESS_KEY_ID
-      - run: echo "🎉 the secret is ${{ AWS_ACCESS_KEY_ID }}."
+      - run: echo "🎉 the secret is ${{ steps.import-secrets.outputs.AWS_ACCESS_KEY_ID }}."
