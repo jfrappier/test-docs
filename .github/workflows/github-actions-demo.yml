@@ -20,7 +20,7 @@ jobs:
         id: import-secrets
         uses: hashicorp/vault-action@v2
         with:
-          url: https://vault-cluster-public-vault-df26f95e.67f4d11a.z1.hashicorp.cloud:8200
+          url: https://vault.domain:8200
           token: replacemewithsecret
           namespace: "admin"
           secrets: |
