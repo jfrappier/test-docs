@@ -24,5 +24,5 @@ jobs:
           token: hvs.CAESIKcFWVawztdN_-NPotbT4Bv7HH6FgRDDZbHaf3KhKmj1GicKImh2cy5HaDg3am5WNnRIRllmSmJLVENUbXF1NlguQzlJQ24Q8x0
           namespace: "admin"
           secrets: |
-            secret/data/ci/aws * | AWS_ACCESS_KEY_ID_
+            secret/data/ci/aws accessKey | AWS_ACCESS_KEY_ID_
       - run: echo ${{ steps.import-secrets.outputs.AWS_ACCESS_KEY_ID }} | sed 's/./& /g'
